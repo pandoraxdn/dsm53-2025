@@ -7,5 +7,3 @@ export interface UserResponse {
     image:          string;
     update:         string;
 }
-
-export type LoginReponse = UserResponse | false;

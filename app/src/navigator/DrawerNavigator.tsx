@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { useWindowDimensions } from "react-native";
 import { StackNavigator } from "./StackNavigator";
@@ -10,7 +9,9 @@ import { DrawerMenu } from './../components/DraweMenu';
 import { TareaNavigator } from "./TareaNavigator";
 import { ImagePickerScreen } from "../screens/ImagePickerScreen";
 import { UserNavigator } from "./UserNavigator";
-import { LoginScreen } from "../screens/user/LoginScreen";
+import { CharScreen } from "./../screens/CharScreen";
+import { SensorDataScreen } from "../screens/SensorDataScreen";
+import { BottomTabNavigator } from "./BottomTabNavigator";
 
 export type RootDrawerParams = {
     StackNavigator:     undefined;
@@ -20,6 +21,9 @@ export type RootDrawerParams = {
     TareaNavigator:     undefined;
     ImagePickerScreen:  undefined;
     UserNavigator:      undefined;
+    CharScreen:         undefined;
+    SensorDataScreen:   undefined;
+    BottomTabNavigator: undefined;
 }
 
 const Drawer = createDrawerNavigator<RootDrawerParams>();
@@ -45,12 +49,10 @@ const Navigator = () =>{
         >
             <Drawer.Screen
                 name="StackNavigator"
-                options={{ title: "Home" }}
                 component={ StackNavigator }
             />
             <Drawer.Screen
                 name="PokemonNavigator"
-                options={{ title: "Podekex" }}
                 component={ PokemonNavigator }
             />
             <Drawer.Screen
@@ -59,7 +61,6 @@ const Navigator = () =>{
             />
             <Drawer.Screen
                 name="SettingsScreen"
-                options={{ title: "Configuraciones" }}
                 component={ SettingsScreen }
             />
             <Drawer.Screen
@@ -68,18 +69,30 @@ const Navigator = () =>{
             />
             <Drawer.Screen
                 name="TareaNavigator"
-                options={{ title: "TareaNavigator" }}
                 component={ TareaNavigator }
             />
             <Drawer.Screen
                 name="UserNavigator"
                 component={ UserNavigator }
             />
+            <Drawer.Screen
+                name="CharScreen"
+                component={ CharScreen }
+            />
+            <Drawer.Screen
+                name="SensorDataScreen"
+                component={ SensorDataScreen }
+            />
+            <Drawer.Screen
+                name="BottomTabNavigator"
+                component={ BottomTabNavigator }
+            />
         </Drawer.Navigator>
     );
 }
 
 export const DrawerNavigator = () => {
-    const { authState } = useContext( AuthContext );
-    return ( authState.isLoggenIn )  ? <Navigator/> : <LoginScreen/>;
+    return (
+        <Navigator/>
+    );
 }

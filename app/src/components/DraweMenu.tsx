@@ -3,13 +3,12 @@ import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
 import { appTheme } from '../themes/appTheme';
 import { AuthContext } from '../context/AuthContext';
-import { BtnTouch } from './BtnTouch';
 
 export const DrawerMenu = ( { navigation }: DrawerContentComponentProps ) => {
 
-    const { authState, logout } = useContext( AuthContext );
+    const { authState } = useContext(AuthContext);
 
-    //const assets: string = './../../assets/';
+    const assets: string = './../../assets/';
 
     return (
         <DrawerContentScrollView>
@@ -22,9 +21,9 @@ export const DrawerMenu = ( { navigation }: DrawerContentComponentProps ) => {
                 <Image
                     style={ appTheme.avatar }
                     source={
-                        ( !authState.isLoggenIn )
+                        ( authState.isLoggenIn)
                         ? { uri: 'https://cdn.pixabay.com/photo/2023/03/25/23/58/capybara-7877166_640.png' }
-                        : { uri: `data:image/jpeg;base64,${authState.favoriteImage}` }
+                        : require( assets + 'avatar.jpeg' )    
                     }
                 />
                 <Text
@@ -39,11 +38,6 @@ export const DrawerMenu = ( { navigation }: DrawerContentComponentProps ) => {
                             : 'Inciar sesión'
                     }
                 </Text>
-                <BtnTouch
-                    title='Cerrar Sesión'
-                    onPress={() => logout()}
-                    background='gray'
-                />
             </View>
             <View
                 style={ appTheme.menuContainer }
@@ -110,12 +104,42 @@ export const DrawerMenu = ( { navigation }: DrawerContentComponentProps ) => {
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={ appTheme.menuBtn }
+                    onPress={ () => navigation.navigate("CharScreen") }
+                >
+                    <Text
+                        style={appTheme.textBtn}
+                    >
+                        Graficas
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={ appTheme.menuBtn }
                     onPress={ () => navigation.navigate("ImagePickerScreen") }
                 >
                     <Text
                         style={appTheme.textBtn}
                     >
                         Cargar Imagen
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={ appTheme.menuBtn }
+                    onPress={ () => navigation.navigate("SensorDataScreen") }
+                >
+                    <Text
+                        style={appTheme.textBtn}
+                    >
+                        Graficas en tipo Real
+                    </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                    style={ appTheme.menuBtn }
+                    onPress={ () => navigation.navigate("BottomTabNavigator") }
+                >
+                    <Text
+                        style={appTheme.textBtn}
+                    >
+                        Tabs
                     </Text>
                 </TouchableOpacity>
             </View>

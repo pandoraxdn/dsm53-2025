@@ -42,7 +42,7 @@ export const FormUserScreen = ( { navigation, route } : Props ) => {
             mediaTypes: ['images'],
             allowsEditing: true,
             aspect: [4,3],
-            quality: 0.1
+            quality: 0.5
         });
 
         ( !result.canceled ) && ( () => {
@@ -103,9 +103,9 @@ export const FormUserScreen = ( { navigation, route } : Props ) => {
                         />
                         <TextInput
                             style={ appTheme.input }
-                            value={ state.password }
                             textContentType='password'
                             secureTextEntry={true}
+                            value={ state.password }
                             onChangeText={ (text) => handleInputChange('password', text) }
                             placeholder='Contraseña del usuario'
                         />
