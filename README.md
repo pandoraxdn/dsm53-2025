@@ -54,7 +54,7 @@ Ahora `Saludo` se renderiza correctamente dentro de `App`.
 * Comando para iniciar el proyecto:
 
 ```bash
-npx expo start
+npx expo start -c
 ```
 
 * Facilita el uso de APIs nativas (cámara, notificaciones, ubicación, etc.) sin configuración adicional.
